@@ -27,13 +27,9 @@ export const gradientBuilder = {
       state.gradient.css = css
     },
 
-    editGradientColor (state, { index, color }) {
-      state.gradient.colors[index].hex = color
+    editGradient (state, { index, property, value }) {
+      state.gradient.colors[index][property] = value
       console.log(state.gradient.colors[index])
-    },
-
-    editGradientStop (state, { index, stop }) {
-      state.gradient.colors[index].stop = stop
     }
   },
 
@@ -59,12 +55,13 @@ export const gradientBuilder = {
       commit('buildGradientCss', css)
     },
 
-    editGradientColor ({ commit, dispatch, getters }, { id, color }) {
+    editGradient ({ commit, dispatch, getters }, { id, property, value }) {
       const data = {
         index: getters.getIndex(id),
-        color
+        property,
+        value
       }
-      commit('editGradientColor', data)
+      commit('editGradient', data)
       dispatch('buildGradientCss')
     }
   },

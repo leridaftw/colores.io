@@ -8,13 +8,16 @@
         v-bind:key="color.id"
       >
         <input
-          :data-id="color.id"
+          :refId="color.id"
+          refProperty="hex"
           :value="color.hex"
-          @keyup="handleInputColor($event)"
+          @keyup="handleInput"
         >
         <input
-          :data-id="color.id"
+          :refId="color.id"
+          refProperty="stop"
           :value="color.stop"
+          @keyup="handleInput"
         >
       </li>
     </ul>
@@ -36,12 +39,13 @@ export default {
   },
 
   methods: {
-    handleInputColor (e) {
+    handleInput (e) {
       const data = {
-        id: e.target.getAttribute('data-id'),
-        color: e.target.value
+        id: e.target.getAttribute('refId'),
+        property: e.target.getAttribute('refProperty'),
+        value: e.target.value
       }
-      this.$store.dispatch('gradientBuilder/editGradientColor', data)
+      this.$store.dispatch('gradientBuilder/editGradient', data)
     }
   },
 
