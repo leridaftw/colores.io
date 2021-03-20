@@ -1,3 +1,6 @@
+import $ from 'jquery'
+import 'jquery-ui-dist/jquery-ui'
+
 export const gradientBuilder = {
   namespaced: true,
 
@@ -5,7 +8,8 @@ export const gradientBuilder = {
     gradient: {
       type: 'linear',
 
-      css: '',
+      sphereCss: '',
+      levelsCss: '',
 
       colors: [
         {
@@ -23,8 +27,9 @@ export const gradientBuilder = {
   },
 
   mutations: {
-    buildGradientCss (state, css) {
-      state.gradient.css = css
+    buildGradient (state, { sphereCss, levelsCss }) {
+      state.gradient.sphereCss = sphereCss
+      state.gradient.levelsCss = levelsCss
     },
 
     editGradient (state, { index, property, value }) {
@@ -32,13 +37,21 @@ export const gradientBuilder = {
       console.log(state.gradient.colors[index])
     },
 
-    addColor (state, data) {
-      state.gradient.colors.splice(1, 0, data)
+    editStopLevel (state, { index, stopLevel }) {
+      state.gradient.colors[index].stop = stopLevel
+    },
+
+    addColor (state, color) {
+      state.gradient.colors.splice(1, 0, color)
+    },
+
+    removeColor (state, index) {
+      state.gradient.colors.splice(index, 1)
     }
   },
 
   actions: {
-    buildGradientCss ({ commit, getters }) {
+    buildGradient ({ commit, getters }) {
       const gradientColors = getters.getGradientColors
       const gradientType = getters.getGradientType
       const colorsArray = []
@@ -54,9 +67,45 @@ export const gradientBuilder = {
 
       const colorsString = colorsArray.join(' ')
 
-      const css = `background-image: ${gradientType}-gradient(to top right, ${colorsString})`
+      const styles = {
+        sphereCss: `background-image: ${gradientType}-gradient(to top right, ${colorsString})`,
+        levelsCss: `background-image: ${gradientType}-gradient(to right, ${colorsString})`
+      }
 
-      commit('buildGradientCss', css)
+      commit('buildGradient', styles)
+    },
+
+    buildMarkers ({ dispatch, getters }) {
+      const levelsBar = document.querySelector('.levels')
+      const gradientColors = getters.getGradientColors
+
+      const markers = document.querySelectorAll('.marker')
+      markers.forEach(marker => marker.remove())
+
+      gradientColors.map(color => {
+        const marker = document.createElement('span')
+        marker.classList.add('marker')
+        marker.setAttribute('refId', color.id)
+        marker.textContent = color.stop
+
+        marker.style.left = `${color.stop * 3.07}px`
+
+        levelsBar.append(marker)
+
+        $(marker).draggable({
+          axis: 'x',
+          containment: '.levels',
+
+          drag: () => {
+            const data = {
+              id: marker.getAttribute('refId'),
+              stopLevel: Math.floor($(marker).position().left / 3.07)
+            }
+            marker.textContent = color.stop
+            dispatch('editStopLevel', data)
+          }
+        })
+      })
     },
 
     editGradient ({ commit, dispatch, getters }, { id, property, value }) {
@@ -66,22 +115,47 @@ export const gradientBuilder = {
         value
       }
       commit('editGradient', data)
-      dispatch('buildGradientCss')
+      dispatch('buildGradient')
+    },
+
+    editStopLevel ({ commit, dispatch, getters }, { id, stopLevel }) {
+      const data = {
+        index: getters.getIndex(id),
+        stopLevel
+      }
+      commit('editStopLevel', data)
+      dispatch('buildGradient')
     },
 
     addColor ({ commit, dispatch, getters }) {
-      const gradientColors = getters.getGradientColors
+      const numberOfColors = getters.getNumberOfColors
 
-      const stop = (gradientColors[1].stop / 2).toString()
+      if (numberOfColors < 6) {
+        const gradientColors = getters.getGradientColors
 
-      const data = {
-        id: new Date().getTime(),
-        hex: 'FFFFFF',
-        stop
+        const stop = (gradientColors[1].stop / 2).toString()
+
+        const color = {
+          id: new Date().getTime(),
+          hex: 'FFFFFF',
+          stop
+        }
+
+        commit('addColor', color)
+        dispatch('buildGradient')
+        dispatch('buildMarkers')
       }
+    },
 
-      commit('addColor', data)
-      dispatch('buildGradientCss')
+    removeColor ({ commit, dispatch, getters }, id) {
+      const numberOfColors = getters.getNumberOfColors
+
+      if (numberOfColors > 2) {
+        const index = getters.getIndex(id)
+
+        commit('removeColor', index)
+        dispatch('buildGradient')
+      }
     }
   },
 
@@ -90,12 +164,20 @@ export const gradientBuilder = {
       return state.gradient.colors
     },
 
+    getNumberOfColors (state) {
+      return state.gradient.colors.length
+    },
+
     getGradientType (state) {
       return state.gradient.type
     },
 
-    getGradientCss (state) {
-      return state.gradient.css
+    getSphereCss (state) {
+      return state.gradient.sphereCss
+    },
+
+    getLevelsCss (state) {
+      return state.gradient.levelsCss
     },
 
     getIndex: state => id => {

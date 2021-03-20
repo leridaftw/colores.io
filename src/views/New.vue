@@ -1,7 +1,7 @@
 <template>
-  <div class="view">
+  <main class="view">
     <h1>New</h1>
-    <Gradient :data="gradientCss" />
+    <Gradient :data="sphereCss" />
     <button @click="handleAddColor">+</button>
     <ul>
       <li
@@ -20,23 +20,34 @@
           :value="color.stop"
           @keyup="handleEditProp"
         >
+
+        <button
+          :refId="color.id"
+          @click="handleRemoveColor"
+        >
+        Remove
+        </button>
       </li>
     </ul>
-  </div>
+
+    <Levels class="levels" :data="levelsCss" />
+  </main>
 </template>
 
 <script>
 import Gradient from '@/components/Gradient'
+import Levels from '@/components/Levels'
 
 export default {
   name: 'New',
 
   components: {
-    Gradient
+    Gradient,
+    Levels
   },
 
   created () {
-    this.$store.dispatch('gradientBuilder/buildGradientCss')
+    this.$store.dispatch('gradientBuilder/buildGradient')
   },
 
   methods: {
@@ -51,12 +62,20 @@ export default {
 
     handleAddColor () {
       this.$store.dispatch('gradientBuilder/addColor')
+    },
+
+    handleRemoveColor (e) {
+      const id = e.target.getAttribute('refId')
+      this.$store.dispatch('gradientBuilder/removeColor', id)
     }
   },
 
   computed: {
-    gradientCss () {
-      return this.$store.getters['gradientBuilder/getGradientCss']
+    sphereCss () {
+      return this.$store.getters['gradientBuilder/getSphereCss']
+    },
+    levelsCss () {
+      return this.$store.getters['gradientBuilder/getLevelsCss']
     }
   }
 }
@@ -66,5 +85,10 @@ export default {
 div {
   width: 90px;
   height: 90px;
+}
+
+.levels {
+  width: 300px;
+  height: 30px;
 }
 </style>
