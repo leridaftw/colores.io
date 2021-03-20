@@ -9,10 +9,12 @@ export const gradientBuilder = {
 
       colors: [
         {
+          id: 1,
           hex: '000000',
           stop: '0'
         },
         {
+          id: 2,
           hex: 'DDDDDD',
           stop: '100'
         }
@@ -23,6 +25,11 @@ export const gradientBuilder = {
   mutations: {
     buildGradientCss (state, css) {
       state.gradient.css = css
+    },
+
+    editGradient (state, { index, property, value }) {
+      state.gradient.colors[index][property] = value
+      console.log(state.gradient.colors[index])
     }
   },
 
@@ -46,6 +53,16 @@ export const gradientBuilder = {
       const css = `background-image: ${gradientType}-gradient(to top right, ${colorsString})`
 
       commit('buildGradientCss', css)
+    },
+
+    editGradient ({ commit, dispatch, getters }, { id, property, value }) {
+      const data = {
+        index: getters.getIndex(id),
+        property,
+        value
+      }
+      commit('editGradient', data)
+      dispatch('buildGradientCss')
     }
   },
 
@@ -60,6 +77,10 @@ export const gradientBuilder = {
 
     getGradientCss (state) {
       return state.gradient.css
+    },
+
+    getIndex: state => id => {
+      return state.gradient.colors.findIndex(color => color.id === parseInt(id))
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div :style="css"></div>
+  <div :style="data"></div>
 </template>
 
 <script>
@@ -7,11 +7,7 @@ export default {
   name: 'Gradient',
 
   props: {
-    css: String
-  },
-
-  created () {
-    console.log(this.$props)
+    data: String
   }
 }
 </script>
