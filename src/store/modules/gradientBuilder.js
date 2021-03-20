@@ -155,6 +155,7 @@ export const gradientBuilder = {
 
         commit('removeColor', index)
         dispatch('buildGradient')
+        dispatch('buildMarkers')
       }
     }
   },
