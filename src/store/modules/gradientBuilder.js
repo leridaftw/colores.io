@@ -30,6 +30,10 @@ export const gradientBuilder = {
     editGradient (state, { index, property, value }) {
       state.gradient.colors[index][property] = value
       console.log(state.gradient.colors[index])
+    },
+
+    addColor (state, data) {
+      state.gradient.colors.splice(1, 0, data)
     }
   },
 
@@ -62,6 +66,21 @@ export const gradientBuilder = {
         value
       }
       commit('editGradient', data)
+      dispatch('buildGradientCss')
+    },
+
+    addColor ({ commit, dispatch, getters }) {
+      const gradientColors = getters.getGradientColors
+
+      const stop = (gradientColors[1].stop / 2).toString()
+
+      const data = {
+        id: new Date().getTime(),
+        hex: 'FFFFFF',
+        stop
+      }
+
+      commit('addColor', data)
       dispatch('buildGradientCss')
     }
   },

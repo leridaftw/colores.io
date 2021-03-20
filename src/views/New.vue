@@ -2,6 +2,7 @@
   <div class="view">
     <h1>New</h1>
     <Gradient :data="gradientCss" />
+    <button @click="handleAddColor">+</button>
     <ul>
       <li
         v-for="color in this.$store.getters['gradientBuilder/getGradientColors']"
@@ -11,13 +12,13 @@
           :refId="color.id"
           refProperty="hex"
           :value="color.hex"
-          @keyup="handleInput"
+          @keyup="handleEditProp"
         >
         <input
           :refId="color.id"
           refProperty="stop"
           :value="color.stop"
-          @keyup="handleInput"
+          @keyup="handleEditProp"
         >
       </li>
     </ul>
@@ -39,13 +40,17 @@ export default {
   },
 
   methods: {
-    handleInput (e) {
+    handleEditProp (e) {
       const data = {
         id: e.target.getAttribute('refId'),
         property: e.target.getAttribute('refProperty'),
         value: e.target.value
       }
       this.$store.dispatch('gradientBuilder/editGradient', data)
+    },
+
+    handleAddColor () {
+      this.$store.dispatch('gradientBuilder/addColor')
     }
   },
 
