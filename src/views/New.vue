@@ -2,6 +2,7 @@
   <main class="view">
     <h1>New</h1>
     <Gradient :data="sphereCss" />
+
     <button @click="handleAddColor">+</button>
     <ul>
       <li
@@ -68,6 +69,17 @@
     </form>
 
     <p> {{ sphereCss }} </p>
+
+    <div class="direction">
+      <button refDirection="to top left" @click="handleEditDirection">Top left</button>
+      <button refDirection="to top" @click="handleEditDirection">Top</button>
+      <button refDirection="to top right" @click="handleEditDirection">Top right</button>
+      <button refDirection="to left" @click="handleEditDirection">Left</button>
+      <button refDirection="to right" @click="handleEditDirection">Right</button>
+      <button refDirection="to bottom left" @click="handleEditDirection">Bottom left</button>
+      <button refDirection="to bottom" @click="handleEditDirection">Bottom</button>
+      <button refDirection="to bottom right" @click="handleEditDirection">Bottom right</button>
+    </div>
   </main>
 </template>
 
@@ -100,6 +112,11 @@ export default {
     handleEditType (e) {
       const type = e.target.getAttribute('refType')
       this.$store.dispatch('gradientBuilder/editType', type)
+    },
+
+    handleEditDirection (e) {
+      const direction = e.target.getAttribute('refDirection')
+      this.$store.dispatch('gradientBuilder/editDirection', direction)
     },
 
     handleAddColor () {

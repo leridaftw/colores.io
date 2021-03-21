@@ -7,6 +7,7 @@ export const gradientBuilder = {
   state: {
     gradient: {
       type: 'linear',
+      direction: 'to top right',
 
       sphereCss: '',
       levelsCss: '',
@@ -14,12 +15,12 @@ export const gradientBuilder = {
       colors: [
         {
           id: 1,
-          hex: '000000',
+          hex: '333333',
           stop: '0'
         },
         {
           id: 2,
-          hex: 'DDDDDD',
+          hex: 'dddddd',
           stop: '100'
         }
       ]
@@ -43,6 +44,10 @@ export const gradientBuilder = {
       state.gradient.type = type
     },
 
+    editDirection (state, direction) {
+      state.gradient.direction = direction
+    },
+
     addColor (state, color) {
       state.gradient.colors.splice(1, 0, color)
     },
@@ -54,11 +59,12 @@ export const gradientBuilder = {
 
   actions: {
     buildGradient ({ commit, getters }) {
-      const gradientColors = getters.getGradientColors
-      const gradientType = getters.getGradientType
+      const colors = getters.getGradientColors
+      const type = getters.getGradientType
+      const direction = getters.getGradientDirection
       const colorsArray = []
 
-      gradientColors.map(color => {
+      colors.map(color => {
         colorsArray.push(`#${color.hex} ${color.stop}%,`)
       })
 
@@ -73,10 +79,10 @@ export const gradientBuilder = {
         levelsCss: `background-image: linear-gradient(to right, ${colorsString})`
       }
 
-      if (gradientType === 'radial') {
-        styles.sphereCss = `background-image: ${gradientType}-gradient(${colorsString})`
+      if (type === 'radial') {
+        styles.sphereCss = `background-image: ${type}-gradient(${colorsString})`
       } else {
-        styles.sphereCss = `background-image: ${gradientType}-gradient(to top right, ${colorsString})`
+        styles.sphereCss = `background-image: ${type}-gradient(${direction}, ${colorsString})`
       }
       commit('buildGradient', styles)
     },
@@ -136,8 +142,16 @@ export const gradientBuilder = {
 
     editType ({ commit, dispatch }, type) {
       commit('editType', type)
-      dispatch('buildGradient', type)
+      dispatch('buildGradient')
       dispatch('buildMarkers')
+    },
+
+    editDirection ({ commit, dispatch, getters }, direction) {
+      const type = getters.getGradientType
+      if (type === 'linear') {
+        commit('editDirection', direction)
+        dispatch('buildGradient')
+      }
     },
 
     addColor ({ commit, dispatch, getters }) {
@@ -184,6 +198,10 @@ export const gradientBuilder = {
 
     getGradientType (state) {
       return state.gradient.type
+    },
+
+    getGradientDirection (state) {
+      return state.gradient.direction
     },
 
     getSphereCss (state) {
