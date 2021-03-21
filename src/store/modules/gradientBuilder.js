@@ -63,11 +63,12 @@ export const gradientBuilder = {
       })
 
       const removeLastComma = colorsArray[colorsArray.length - 1].split(',')[0]
-
       colorsArray.pop()
       colorsArray.push(removeLastComma)
 
       const colorsString = colorsArray.join(' ')
+
+      console.log(colorsString)
 
       const styles = {
         sphereCss: '',

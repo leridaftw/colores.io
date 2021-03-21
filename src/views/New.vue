@@ -9,12 +9,19 @@
         v-bind:key="color.id"
       >
         <input
+          type="color"
+          :refId="color.id"
+          :value="'#' + color.hex"
+          >
+        <input
+          type="text"
           :refId="color.id"
           refProperty="hex"
           :value="color.hex"
           @keyup="handleEditProp"
         >
         <input
+          type="number"
           :refId="color.id"
           refProperty="stop"
           :value="color.stop"
