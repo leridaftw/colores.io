@@ -70,7 +70,7 @@ export const gradientBuilder = {
 
       const styles = {
         sphereCss: '',
-        levelsCss: `background-image: ${gradientType}-gradient(to right, ${colorsString})`
+        levelsCss: `background-image: linear-gradient(to right, ${colorsString})`
       }
 
       if (gradientType === 'radial') {
@@ -78,7 +78,6 @@ export const gradientBuilder = {
       } else {
         styles.sphereCss = `background-image: ${gradientType}-gradient(to top right, ${colorsString})`
       }
-
       commit('buildGradient', styles)
     },
 
