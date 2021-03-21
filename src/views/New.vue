@@ -66,6 +66,8 @@
       <p>Radial</p>
       </div>
     </form>
+
+    <p> {{ sphereCss }} </p>
   </main>
 </template>
 
