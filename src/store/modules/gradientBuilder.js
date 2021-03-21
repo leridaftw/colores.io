@@ -68,8 +68,6 @@ export const gradientBuilder = {
 
       const colorsString = colorsArray.join(' ')
 
-      console.log(colorsString)
-
       const styles = {
         sphereCss: '',
         levelsCss: `background-image: ${gradientType}-gradient(to right, ${colorsString})`

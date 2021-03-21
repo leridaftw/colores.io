@@ -11,21 +11,27 @@
         <input
           type="color"
           :refId="color.id"
+          refProperty="hex"
           :value="'#' + color.hex"
-          >
+          @input="handleEditColor"
+        >
         <input
           type="text"
+          maxlength="6"
+          minlength="6"
           :refId="color.id"
           refProperty="hex"
           :value="color.hex"
-          @keyup="handleEditProp"
+          @keyup="handleEditColor"
         >
         <input
           type="number"
+          maxlength="3"
+          minlength="1"
           :refId="color.id"
           refProperty="stop"
           :value="color.stop"
-          @keyup="handleEditProp"
+          @keyup="handleEditColor"
         >
 
         <button
@@ -80,11 +86,11 @@ export default {
   },
 
   methods: {
-    handleEditProp (e) {
+    handleEditColor (e) {
       const data = {
         id: e.target.getAttribute('refId'),
         property: e.target.getAttribute('refProperty'),
-        value: e.target.value
+        value: e.target.value.replace('#', '')
       }
       this.$store.dispatch('gradientBuilder/editGradient', data)
     },
