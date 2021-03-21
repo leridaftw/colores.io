@@ -15,12 +15,12 @@ export const gradientBuilder = {
       colors: [
         {
           id: 1,
-          hex: '333333',
+          hex: 'FF0173',
           stop: '0'
         },
         {
           id: 2,
-          hex: 'dddddd',
+          hex: 'FF601F',
           stop: '100'
         }
       ]
@@ -157,7 +157,7 @@ export const gradientBuilder = {
     addColor ({ commit, dispatch, getters }) {
       const numberOfColors = getters.getNumberOfColors
 
-      if (numberOfColors < 6) {
+      if (numberOfColors < 4) {
         const gradientColors = getters.getGradientColors
 
         const stop = (gradientColors[1].stop / 2).toString()

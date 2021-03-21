@@ -7,6 +7,7 @@
   padding: 0;
   user-select: none;
   box-sizing: border-box;
+  outline: 0;
 }
 
 ul {
@@ -31,9 +32,13 @@ h1, h2, h3, h4, h5, h6 {
   color: $black;
 }
 
-p, input, button, a, select, option, textarea {
+p, input, button, a, select, option, textarea, label {
   font-family: $font-primary;
   color: $black;
+}
+
+button {
+  cursor: pointer;
 }
 
 .flex {
@@ -42,10 +47,26 @@ p, input, button, a, select, option, textarea {
   justify-content: center;
 }
 
+.column {
+  flex-direction: column;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
 .between {
   justify-content: space-between;
 }
 
-.column {
-  height: 100%;
+.start {
+  justify-content: flex-start;
+}
+
+.full-height {
+  height: calc(100vh - 50px);
+}
+
+.full-width {
+  width: 100%;
 }

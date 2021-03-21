@@ -1,15 +1,15 @@
 <template>
   <header>
     <nav class="flex between">
-      <div class="column flex">
+      <div class="full-height flex">
         <router-link to="/" class="flex">
           <Logo />
         </router-link>
 
-        <div class="path column flex">
+        <div class="path full-height flex">
           <span class="placeholder flex">
             <h2>Gradients</h2>
-            <i class="fas fa-angle-right" /> 
+            <i class="fas fa-angle-right" />
           </span>
           <span class="selector flex">
             <h3>Random</h3>
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <router-link to="/new" class="flex">
+      <router-link to="/create" class="flex">
         <i class="fas fa-plus flex"></i>
       </router-link>
     </nav>
@@ -78,7 +78,7 @@ header {
 
   .path {
     position: relative;
-    top: 0.1em;
+    top: 0.15em;
     height: 100%;
     margin-left: 1.5em;
 
@@ -93,7 +93,7 @@ header {
 
     h2, h3 {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     i:first-child {

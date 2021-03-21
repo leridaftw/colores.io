@@ -16,12 +16,17 @@ export default {
 }
 </script>
 
-<style>
-.marker {
-  position: absolute;
-  width: 1px;
-  color: red;
-  background: yellow;
-  cursor: grab;
+<style lang="scss">
+.levels {
+  position: relative;
+
+  .marker {
+    position: absolute;
+    width: 1px;
+    color: red;
+    background: yellow;
+    cursor: grab;
+  }
 }
+
 </style>
