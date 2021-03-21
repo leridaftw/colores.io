@@ -1,8 +1,7 @@
 <template>
   <main class="view">
-    <h1>New</h1>
+    <Header />
     <Gradient :data="sphereCss" />
-
     <button @click="handleAddColor">+</button>
     <ul>
       <li
@@ -84,6 +83,7 @@
 </template>
 
 <script>
+import Header from '@/components/Header'
 import Gradient from '@/components/Gradient'
 import Levels from '@/components/Levels'
 
@@ -91,6 +91,7 @@ export default {
   name: 'New',
 
   components: {
+    Header,
     Gradient,
     Levels
   },

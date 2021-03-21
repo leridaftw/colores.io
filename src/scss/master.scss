@@ -1,0 +1,51 @@
+@import './partials/colors';
+@import './partials/breakpoints';
+@import './partials/fonts';
+
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+p, input, button {
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+}
+
+:visited {
+  color: unset;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  font-weight: normal;
+  color: $black;
+}
+
+p, input, button, a, select, option, textarea {
+  font-family: $font-primary;
+  color: $black;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.column {
+  height: 100%;
+}
