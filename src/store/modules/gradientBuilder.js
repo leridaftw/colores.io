@@ -34,11 +34,13 @@ export const gradientBuilder = {
 
     editGradient (state, { index, property, value }) {
       state.gradient.colors[index][property] = value
-      console.log(state.gradient.colors[index])
     },
 
     editStopLevel (state, { index, stopLevel }) {
       state.gradient.colors[index].stop = stopLevel
+    },
+    editType (state, type) {
+      state.gradient.type = type
     },
 
     addColor (state, color) {
@@ -68,8 +70,14 @@ export const gradientBuilder = {
       const colorsString = colorsArray.join(' ')
 
       const styles = {
-        sphereCss: `background-image: ${gradientType}-gradient(to top right, ${colorsString})`,
+        sphereCss: '',
         levelsCss: `background-image: ${gradientType}-gradient(to right, ${colorsString})`
+      }
+
+      if (gradientType === 'radial') {
+        styles.sphereCss = `background-image: ${gradientType}-gradient(${colorsString})`
+      } else {
+        styles.sphereCss = `background-image: ${gradientType}-gradient(to top right, ${colorsString})`
       }
 
       commit('buildGradient', styles)
@@ -116,6 +124,7 @@ export const gradientBuilder = {
       }
       commit('editGradient', data)
       dispatch('buildGradient')
+      dispatch('buildMarkers')
     },
 
     editStopLevel ({ commit, dispatch, getters }, { id, stopLevel }) {
@@ -125,6 +134,12 @@ export const gradientBuilder = {
       }
       commit('editStopLevel', data)
       dispatch('buildGradient')
+    },
+
+    editType ({ commit, dispatch }, type) {
+      commit('editType', type)
+      dispatch('buildGradient', type)
+      dispatch('buildMarkers')
     },
 
     addColor ({ commit, dispatch, getters }) {

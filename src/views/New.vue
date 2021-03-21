@@ -31,6 +31,28 @@
     </ul>
 
     <Levels class="levels" :data="levelsCss" />
+
+    <form>
+      <div class="field">
+        <input
+          type="radio"
+          name="type"
+          refType="linear"
+          checked
+          @click="handleEditType"
+        >
+        <p>Linear</p>
+      </div>
+      <div class="field">
+      <input
+        type="radio"
+        name="type"
+        refType="radial"
+        @click="handleEditType"
+      >
+      <p>Radial</p>
+      </div>
+    </form>
   </main>
 </template>
 
@@ -58,6 +80,11 @@ export default {
         value: e.target.value
       }
       this.$store.dispatch('gradientBuilder/editGradient', data)
+    },
+
+    handleEditType (e) {
+      const type = e.target.getAttribute('refType')
+      this.$store.dispatch('gradientBuilder/editType', type)
     },
 
     handleAddColor () {
