@@ -5,7 +5,7 @@
       <div class="flex column">
         <div class="sphere-wrapper flex">
           <Gradient :data="sphereCss" class="sphere" />
-          <Direction 
+          <Direction
             v-if="$store.getters['gradientBuilder/getGradientType'] === 'linear'"
             @handleEditDirection="handleEditDirection"
           />

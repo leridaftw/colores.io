@@ -59,8 +59,12 @@ button {
   justify-content: space-between;
 }
 
-.start {
+.justify-start {
   justify-content: flex-start;
+}
+
+.align-start {
+  align-items: flex-start;
 }
 
 .full-height {

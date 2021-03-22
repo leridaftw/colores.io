@@ -1,27 +1,30 @@
 <template>
-  <div class="types flex start">
-    <div class="field flex">
+  <article class="types flex column align-start">
+    <h3>Gradient type</h3>
+    <div class="flex">
+      <div class="field flex">
+        <input
+          type="radio"
+          name="type"
+          refType="linear"
+          checked
+          id="linear"
+          @click="$emit('handleEditType', $event)"
+        >
+        <label for="linear">Linear</label>
+      </div>
+      <div class="field flex">
       <input
         type="radio"
         name="type"
-        refType="linear"
-        checked
-        id="linear"
+        id="radial"
+        refType="radial"
         @click="$emit('handleEditType', $event)"
       >
-      <label for="linear">Linear</label>
+      <label for="radial">Radial</label>
+      </div>
     </div>
-    <div class="field flex">
-    <input
-      type="radio"
-      name="type"
-      id="radial"
-      refType="radial"
-      @click="$emit('handleEditType', $event)"
-    >
-    <label for="radial">Radial</label>
-    </div>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -33,8 +36,17 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/master';
 
+article {
+  margin-top: 1em;
+}
+
 .types {
   margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 0.5em;
 }
 
 .field:last-child {
@@ -59,5 +71,6 @@ label {
   -webkit-text-fill-color: transparent;
   opacity: 0.7;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 </style>
