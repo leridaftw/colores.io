@@ -29,7 +29,7 @@
         </ul>
 
         <Type @handleEditType="handleEditType" />
-        <GeneratedCSS :data="sphereCss" />
+        <GeneratedCSS @handleCopyCSS="handleCopyCSS" :data="sphereCss" />
       </div>
     </main>
   </div>
@@ -90,6 +90,12 @@ export default {
     handleRemoveColor (e) {
       const id = e.currentTarget.getAttribute('refId')
       this.$store.dispatch('gradientBuilder/removeColor', id)
+    },
+
+    handleCopyCSS () {
+      const generatedCss = document.querySelector('textarea')
+      generatedCss.select()
+      document.execCommand('copy')
     }
   },
 

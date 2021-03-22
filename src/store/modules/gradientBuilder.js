@@ -117,8 +117,14 @@ export const gradientBuilder = {
               id: marker.getAttribute('refId'),
               stopLevel: Math.floor($(marker).position().left / 2.98)
             }
+
+            marker.style.cursor = 'grabbing'
             markerHelper.textContent = color.stop
             dispatch('editStopLevel', data)
+          },
+
+          stop: () => {
+            marker.style.cursor = 'grab'
           }
         })
       })
