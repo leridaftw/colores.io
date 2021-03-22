@@ -31,5 +31,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/master';
 
+.types {
+  margin-bottom: 1em;
+}
+
+.field:last-child {
+  margin-left: 1em
+}
+
+.field:hover label {
+  opacity: 1;
+}
+
+input {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 0.5em;
+  background: -webkit-linear-gradient($pink, $orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.7;
+  cursor: pointer;
+}
 </style>

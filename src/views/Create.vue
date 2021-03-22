@@ -3,18 +3,24 @@
     <Header />
     <main class="content full-width full-height flex between reverse">
       <div class="flex column">
-        <Gradient :data="sphereCss" class="sphere" />
-        <Levels class="levels" :data="levelsCss" />
+        <div class="sphere-wrapper flex">
+          <Gradient :data="sphereCss" class="sphere" />
+          <Direction 
+            v-if="$store.getters['gradientBuilder/getGradientType'] === 'linear'"
+            @handleEditDirection="handleEditDirection"
+          />
+        </div>
+        <Stops class="levels" :data="levelsCss" />
       </div>
       <div class="panel">
-        <AddColor @handleAddColor="handleAddColor" />
+        <Add @handleAddColor="handleAddColor" />
         <ul>
           <li
             class="flex start"
             v-for="color in this.$store.getters['gradientBuilder/getGradientColors']"
             :key="color.id"
           >
-            <ColorField
+            <Color
               :color="color"
               @handleEditColor="handleEditColor"
               @handleRemoveColor="handleRemoveColor"
@@ -22,20 +28,8 @@
           </li>
         </ul>
 
-        <EditType @handleEditType="handleEditType" />
-
-        <p> {{ sphereCss }} </p>
-
-        <div class="direction">
-          <button refDirection="to top left" @click="handleEditDirection">Top left</button>
-          <button refDirection="to top" @click="handleEditDirection">Top</button>
-          <button refDirection="to top right" @click="handleEditDirection">Top right</button>
-          <button refDirection="to left" @click="handleEditDirection">Left</button>
-          <button refDirection="to right" @click="handleEditDirection">Right</button>
-          <button refDirection="to bottom left" @click="handleEditDirection">Bottom left</button>
-          <button refDirection="to bottom" @click="handleEditDirection">Bottom</button>
-          <button refDirection="to bottom right" @click="handleEditDirection">Bottom right</button>
-        </div>
+        <Type @handleEditType="handleEditType" />
+        <GeneratedCSS :data="sphereCss" />
       </div>
     </main>
   </div>
@@ -44,21 +38,25 @@
 <script>
 import Header from '@/components/common/Header'
 import Gradient from '@/components/common/Gradient'
-import AddColor from '@/components/views/create/AddColor'
-import ColorField from '@/components/views/create/ColorField'
-import EditType from '@/components/views/create/EditType'
-import Levels from '@/components/views/create/Levels'
+import Add from '@/components/views/create/Add'
+import Color from '@/components/views/create/Color'
+import Type from '@/components/views/create/Type'
+import Direction from '@/components/views/create/Direction'
+import GeneratedCSS from '@/components/views/create/GeneratedCSS'
+import Stops from '@/components/views/create/Stops'
 
 export default {
   name: 'New',
 
   components: {
     Header,
-    AddColor,
-    ColorField,
-    EditType,
+    Add,
+    Color,
+    Type,
+    Direction,
     Gradient,
-    Levels
+    GeneratedCSS,
+    Stops
   },
 
   created () {
@@ -81,7 +79,7 @@ export default {
     },
 
     handleEditDirection (e) {
-      const direction = e.target.getAttribute('refDirection')
+      const direction = e.currentTarget.getAttribute('refDirection')
       this.$store.dispatch('gradientBuilder/editDirection', direction)
     },
 
@@ -117,6 +115,17 @@ export default {
   max-width: 420px;
 }
 
+.sphere-wrapper {
+  position: relative;
+  height: 420px;
+
+  &:hover .direction {
+    opacity: 1;
+    width: 180px;
+    height: 180px;
+  }
+}
+
 .sphere {
   width: 420px;
   height: 420px;
@@ -125,10 +134,15 @@ export default {
 
 ul {
   margin: 1em 0;
+  border-bottom: 1px solid $grey;
 }
 
 li:first-child {
   border-top: 1px solid $grey;
+}
+
+li:last-child {
+  border-bottom: 0;
 }
 
 li {

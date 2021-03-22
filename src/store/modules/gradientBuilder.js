@@ -15,12 +15,12 @@ export const gradientBuilder = {
       colors: [
         {
           id: 1,
-          hex: 'FF0173',
+          hex: '333333',
           stop: '0'
         },
         {
           id: 2,
-          hex: 'FF601F',
+          hex: 'FFFFFF',
           stop: '100'
         }
       ]
