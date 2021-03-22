@@ -88,7 +88,7 @@ export const gradientBuilder = {
     },
 
     buildMarkers ({ dispatch, getters }) {
-      const levelsBar = document.querySelector('.levels')
+      const levelsBar = document.querySelector('.stops')
       const gradientColors = getters.getGradientColors
 
       const markers = document.querySelectorAll('.marker')
@@ -96,24 +96,28 @@ export const gradientBuilder = {
 
       gradientColors.map(color => {
         const marker = document.createElement('span')
+        const markerHelper = document.createElement('span')
+
         marker.classList.add('marker')
         marker.setAttribute('refId', color.id)
-        marker.textContent = color.stop
+        markerHelper.classList.add('marker-helper')
+        markerHelper.textContent = color.stop
 
-        marker.style.left = `${color.stop * 3.07}px`
+        marker.style.left = `${color.stop * 3}px`
 
+        marker.append(markerHelper)
         levelsBar.append(marker)
 
         $(marker).draggable({
           axis: 'x',
-          containment: '.levels',
+          containment: '.stops',
 
           drag: () => {
             const data = {
               id: marker.getAttribute('refId'),
-              stopLevel: Math.floor($(marker).position().left / 3.07)
+              stopLevel: Math.floor($(marker).position().left / 2.98)
             }
-            marker.textContent = color.stop
+            markerHelper.textContent = color.stop
             dispatch('editStopLevel', data)
           }
         })

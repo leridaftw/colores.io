@@ -2,7 +2,7 @@
   <article>
     <div class="row flex justify-start">
       <h3>Generated CSS</h3>
-      <i class="far fa-clipboard"></i>
+      <i class="far fa-clipboard" @click="$emit('handleCopyGeneratedCSS')"></i>
     </div>
     <div class="generated-css-wrapper">
       <p>{{ data }}</p>
@@ -29,11 +29,12 @@ article {
 
 h3 {
   font-size: 16px;
+  opacity: 0.5;
 }
 
 i {
   position: relative;
-  top: -1px;
+  top: -2px;
   margin-left: 0.5em;
   padding: 0.5em;
   font-size: 18px;

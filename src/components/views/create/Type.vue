@@ -1,6 +1,6 @@
 <template>
   <article class="types flex column align-start">
-    <h3>Gradient type</h3>
+    <h3>Type</h3>
     <div class="flex">
       <div class="field flex">
         <input
@@ -37,7 +37,7 @@ export default {
 @import '@/scss/master';
 
 article {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 .types {
@@ -47,14 +47,11 @@ article {
 h3 {
   font-size: 16px;
   margin-bottom: 0.5em;
+  opacity: 0.5;
 }
 
 .field:last-child {
   margin-left: 1em
-}
-
-.field:hover label {
-  opacity: 1;
 }
 
 input {
@@ -66,11 +63,7 @@ label {
   font-size: 14px;
   font-weight: 600;
   padding-left: 0.5em;
-  background: -webkit-linear-gradient($pink, $orange);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  opacity: 0.7;
   cursor: pointer;
-  transition: 0.3s ease;
 }
+
 </style>

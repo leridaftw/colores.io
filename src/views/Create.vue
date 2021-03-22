@@ -16,7 +16,7 @@
         <Add @handleAddColor="handleAddColor" />
         <ul>
           <li
-            class="flex start"
+            class="flex justify-start"
             v-for="color in this.$store.getters['gradientBuilder/getGradientColors']"
             :key="color.id"
           >
@@ -108,7 +108,9 @@ export default {
 @import '@/scss/master';
 
 .content {
-  padding: 0 12em;
+  padding: 0 2em;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .panel {
@@ -117,6 +119,7 @@ export default {
 
 .sphere-wrapper {
   position: relative;
+  top: -2em;
   height: 420px;
 
   &:hover .direction {
@@ -148,26 +151,5 @@ li:last-child {
 li {
   padding: 0.5em 0;
   border-bottom: 1px solid $grey;
-}
-
-.types {
-  .field {
-    margin-left: 1em;
-    cursor: pointer;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    input {
-      cursor: pointer;
-    }
-
-    label {
-      font-size: 14px;
-      padding-left: 0.5em;
-      cursor: pointer;
-    }
-  }
 }
 </style>
