@@ -3,7 +3,10 @@
     <nav class="flex between">
       <div class="full-height flex">
         <router-link to="/" class="flex">
-          <Logo />
+          <div>
+            <img src="@/assets/logo.svg">
+            <h1>Colores</h1>
+          </div>
         </router-link>
 
         <div class="path full-height flex">
@@ -26,17 +29,12 @@
 </template>
 
 <script>
-import Logo from '@/components/Logo'
-
 export default {
-  name: 'Header',
-  components: {
-    Logo
-  }
+  name: 'Header'
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/scss/master';
 
 header {
@@ -45,6 +43,20 @@ header {
   border-bottom: 1px solid $grey;
   box-shadow: 0 3px 30px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    margin-top: 0.2em;
+    margin-left: 0.4em;
+    font-family: $font-secondary;
+    background: -webkit-linear-gradient($pink, $orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
   nav {
     height: 100%;

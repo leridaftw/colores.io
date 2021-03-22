@@ -19,6 +19,9 @@ export default {
 <style lang="scss">
 .levels {
   position: relative;
+  margin-top: 2em;
+  width: 300px;
+  height: 19px;
 
   .marker {
     position: absolute;
