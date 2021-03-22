@@ -21,8 +21,11 @@
         </div>
       </div>
 
-      <router-link to="/create" class="flex">
+      <router-link v-if="$route.name === 'Home'" to="/create" class="flex">
         <i class="fas fa-plus flex"></i>
+      </router-link>
+      <router-link v-if="$route.name === 'Create'" to="/create" class="flex">
+        <button>Publish</button>
       </router-link>
     </nav>
   </header>
@@ -39,7 +42,7 @@ export default {
 
 header {
   height: 50px;
-  padding: 0 1em;
+  padding: 0 2em;
   border-bottom: 1px solid $grey;
   box-shadow: 0 3px 30px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -62,6 +65,25 @@ header {
     height: 100%;
     max-width: $desktop;
     margin: 0 auto;
+    padding-right: 2em;
+
+    button {
+      padding: 0.5em 1em;
+      background: none;
+      border: 1px solid $pink;
+      border-radius: 0.25em;
+      font-weight: 600;
+      background: -webkit-linear-gradient($pink, $orange);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &:hover {
+        background: -webkit-linear-gradient($pink, $orange);
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        color: white;
+      }
+    }
   }
 
   a {
