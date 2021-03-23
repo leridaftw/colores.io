@@ -8,7 +8,7 @@
       <input v-model="gradientName" type="text" maxlength="18" autofocus>
 
       <div class="buttons">
-        <button>
+        <button @click="handlePublish">
           <i class="fas fa-check"></i>
           Confirm
         </button>
@@ -29,6 +29,11 @@ export default {
 
   components: {
     Card
+  },
+
+  methods: {
+    handlePublish () {
+    }
   },
 
   computed: {
