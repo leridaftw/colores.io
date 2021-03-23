@@ -224,6 +224,10 @@ export const gradientBuilder = {
       return state.gradient.name
     },
 
+    getGradientId (state) {
+      return state.gradient.id
+    },
+
     getSphereCss (state) {
       return state.gradient.sphereCss
     },

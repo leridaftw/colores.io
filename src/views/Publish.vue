@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 import Card from '@/components/common/Card'
 
 export default {
@@ -36,10 +37,14 @@ export default {
 
   methods: {
     handlePublish () {
-      const gradient = this.$store.getters['gradientBuilder/getSphereCss']
-      const name = this.$store.getters['gradientBuilder/getGradientName']
-
-      console.log(gradient, name)
+      const data = {
+        id: this.$store.getters['gradientBuilder/getGradientId'],
+        gradient: this.$store.getters['gradientBuilder/getSphereCss'],
+        name: this.$store.getters['gradientBuilder/getGradientName']
+      }
+      const database = firebase.database()
+      const ref = database.ref('gradients')
+      ref.push(data)
     }
   },
 

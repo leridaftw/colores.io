@@ -80,8 +80,8 @@ span {
     &::after {
       content: '';
         position: absolute;
-        display: block;    
-        width: 0px;        
+        display: block;
+        width: 0px;
         left: 50%;
         bottom: -1.4em;
         border: 6px solid transparent;

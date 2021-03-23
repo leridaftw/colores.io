@@ -53,8 +53,8 @@ export default {
       &::before {
         content: '';
         position: absolute;
-        display: block;    
-        width: 0px;        
+        display: block;
+        width: 0px;
         left: 50%;
         top: 0.4em;
         border: 6px solid transparent;
