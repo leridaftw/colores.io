@@ -2,7 +2,7 @@
   <article class="card flex column">
     <Gradient :data="data" />
     <div class="info flex column align-start">
-      <h4>Name</h4>
+      <h4>{{ name }}</h4>
       <div class="flex full-width">
         <button>
           <i class="far fa-heart"></i>
@@ -30,16 +30,6 @@ export default {
 
   components: {
     Gradient
-  },
-
-  watch: {
-    data: {
-      immediate: true,
-      deep: true,
-      handler (value) {
-        console.log(value)
-      }
-    }
   }
 }
 </script>
@@ -57,9 +47,9 @@ article {
   transition: 0.3s ease;
 
   &:hover {
+  }
     transform: scale(1);
     box-shadow: 0 1em 1em rgba(0, 0, 0, 0.05);
-  }
 }
 
 .gradient {
@@ -67,15 +57,15 @@ article {
   height: 140px;
   border-radius: 100em;
   margin-bottom: 4.5em;
-  box-shadow: 0 0 0 0.4em lighten($grey, 2);
 }
 
 h4 {
-  margin-bottom: 1em;
-  text-align: center;
   width: 100%;
+  margin-bottom: 1.25em;
   font-size: 14px;
   font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 button {

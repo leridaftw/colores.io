@@ -46,6 +46,10 @@ export const gradientBuilder = {
       state.gradient.type = type
     },
 
+    setGradientName (state, name) {
+      state.gradient.name = name
+    },
+
     editDirection (state, direction) {
       state.gradient.direction = direction
     },
@@ -214,6 +218,10 @@ export const gradientBuilder = {
 
     getGradientDirection (state) {
       return state.gradient.direction
+    },
+
+    getGradientName (state) {
+      return state.gradient.name
     },
 
     getSphereCss (state) {
