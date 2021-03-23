@@ -42,9 +42,14 @@ export default {
         gradient: this.$store.getters['gradientBuilder/getSphereCss'],
         name: this.$store.getters['gradientBuilder/getGradientName']
       }
+
       const database = firebase.database()
       const ref = database.ref('gradients')
+
       ref.push(data)
+
+      this.$store.commit('gradientBuilder/resetData')
+      this.$router.push('/')
     }
   },
 

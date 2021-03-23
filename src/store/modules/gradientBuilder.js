@@ -50,6 +50,26 @@ export const gradientBuilder = {
       state.gradient.name = name
     },
 
+    resetData (state) {
+      state.gradient.name = ''
+      state.gradient.type = 'linear'
+      state.gradient.direction = 'to top right'
+      state.gradient.sphereCss = ''
+      state.gradient.levelsCss = ''
+      state.gradient.colors = [
+        {
+          id: 1,
+          hex: '333333',
+          stop: '0'
+        },
+        {
+          id: 2,
+          hex: 'FFFFFF',
+          stop: '100'
+        }
+      ]
+    },
+
     editDirection (state, direction) {
       state.gradient.direction = direction
     },
