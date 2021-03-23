@@ -24,7 +24,7 @@
       <router-link v-if="$route.name === 'Home'" to="/create" class="flex">
         <i class="fas fa-plus flex"></i>
       </router-link>
-      <router-link v-if="$route.name === 'Create'" to="/create" class="flex">
+      <router-link v-if="$route.name === 'Create'" to="/publish" class="flex">
         <button>Publish</button>
       </router-link>
     </nav>

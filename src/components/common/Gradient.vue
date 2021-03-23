@@ -1,5 +1,5 @@
 <template>
-  <div :style="data"></div>
+  <div :style="data" class="gradient"></div>
 </template>
 
 <script>
