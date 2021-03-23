@@ -106,7 +106,7 @@ textarea {
   background: 0;
   resize: none;
   border: 0;
-  max-height: 40px;
+  max-height: 50px;
 }
 
 @keyframes opacity {

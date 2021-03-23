@@ -4,7 +4,7 @@
     <div class="info flex column align-start">
       <h4>{{ name }}</h4>
       <div class="flex full-width">
-        <button class="flex">
+        <button class="flex" :refId="id">
           <i class="fas fa-clipboard"/>
           <p>Copy CSS</p>
         </button>

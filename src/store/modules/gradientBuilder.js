@@ -6,7 +6,7 @@ export const gradientBuilder = {
 
   state: {
     gradient: {
-      id: new Date().getTime(),
+      id: Math.floor(Math.random() * 99999999999999),
       name: '',
       type: 'linear',
       direction: 'to top right',

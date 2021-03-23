@@ -10,7 +10,7 @@
       <div class="buttons">
         <button
           @click="handlePublish"
-          :style="[gradientName.length > 0? {} : {opacity: 0.5, pointerEvents: 'none'}]"
+          :style="[gradientName.trim().length > 0? {} : {opacity: 0.5, pointerEvents: 'none'}]"
         >
           <i class="fas fa-check"></i>
           Confirm
