@@ -8,7 +8,10 @@
       <input v-model="gradientName" type="text" maxlength="18" autofocus>
 
       <div class="buttons">
-        <button @click="handlePublish">
+        <button
+          @click="handlePublish"
+          :style="[gradientName.length > 0? {} : {opacity: 0.5, pointerEvents: 'none'}]"
+        >
           <i class="fas fa-check"></i>
           Confirm
         </button>
@@ -33,6 +36,10 @@ export default {
 
   methods: {
     handlePublish () {
+      const gradient = this.$store.getters['gradientBuilder/getSphereCss']
+      const name = this.$store.getters['gradientBuilder/getGradientName']
+
+      console.log(gradient, name)
     }
   },
 
