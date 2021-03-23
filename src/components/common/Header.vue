@@ -12,12 +12,12 @@
         <div class="path full-height flex">
           <span class="placeholder flex">
             <h2>Gradients</h2>
-            <i class="fas fa-angle-right" />
-          </span>
-          <span class="selector flex">
-            <h3>Random</h3>
             <i class="fas fa-angle-down" />
           </span>
+          <!-- <span class="selector flex">
+            <h3>Random</h3>
+            <i class="fas fa-angle-down" />
+          </span> -->
         </div>
       </div>
 
@@ -25,7 +25,7 @@
         <i class="fas fa-plus flex"></i>
       </router-link>
       <router-link v-if="$route.name === 'Create'" to="/publish" class="flex">
-        <button>Publish</button>
+        <button :style="{marginRight: '4em'}">Publish</button>
       </router-link>
     </nav>
   </header>
@@ -65,7 +65,6 @@ header {
     height: 100%;
     max-width: $desktop;
     margin: 0 auto;
-    padding-right: 2em;
 
     button {
       padding: 0.5em 1em;
