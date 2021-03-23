@@ -6,8 +6,13 @@ export const gradients = {
     gradients: []
   },
   mutations: {
-    loadGradients (state, gradients) {
-      state.gradients = gradients
+    loadGradients (state, gradient) {
+      state.gradients = [...state.gradients, gradient]
+      state.gradients = state.gradients.sort(() => 0.5 - Math.random())
+    },
+
+    emptyGradients (state) {
+      state.gradients = []
     }
   },
   actions: {
@@ -16,7 +21,10 @@ export const gradients = {
       const ref = database.ref('gradients')
       ref.on('value', (snapshot) => {
         const gradients = snapshot.val()
-        commit('loadGradients', gradients)
+        commit('emptyGradients')
+        Object.entries(gradients).map((gradient) => {
+          commit('loadGradients', gradient[1])
+        })
       })
     }
   },

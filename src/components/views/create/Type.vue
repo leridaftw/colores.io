@@ -66,4 +66,13 @@ label {
   cursor: pointer;
 }
 
+@media (max-width: 920px) {
+  h3 {
+    margin: 0 auto;
+  }
+
+  .flex {
+    width: 100%;
+  }
+}
 </style>

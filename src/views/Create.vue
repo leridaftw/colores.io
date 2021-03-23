@@ -158,4 +158,44 @@ li {
   padding: 0.5em 0;
   border-bottom: 1px solid $grey;
 }
+
+@media (max-width: 920px) {
+  header {
+    padding: 1em;
+  }
+
+  .panel {
+    padding-top: 4em;
+    padding-bottom: 2em;
+    width: 100%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .sphere-wrapper {
+    top: 0;
+    width: 100%;
+    align-items: flex-start;
+    height: auto;
+    margin-bottom: 2em;
+
+    .gradient {
+      width: 100%;
+      border-radius: 0;
+      height: 260px;
+    }
+  }
+
+  .direction {
+    top: 2.5em;
+  }
+}
 </style>

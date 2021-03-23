@@ -4,10 +4,6 @@
     <div class="info flex column align-start">
       <h4>{{ name }}</h4>
       <div class="flex full-width">
-        <button>
-          <i class="far fa-heart"></i>
-          <p></p>
-        </button>
         <button class="flex">
           <i class="fas fa-clipboard"/>
           <p>Copy CSS</p>
@@ -45,11 +41,8 @@ article {
   position: relative;
   transform: scale(0.9);
   transition: 0.3s ease;
-
-  &:hover {
-  }
-    transform: scale(1);
-    box-shadow: 0 1em 1em rgba(0, 0, 0, 0.05);
+  transform: scale(1);
+  box-shadow: 0 1em 1em rgba(0, 0, 0, 0.05);
 }
 
 .gradient {
@@ -74,19 +67,21 @@ button {
   background: none;
   border: 0;
   border-top: 1px solid $grey;
+  font-weight: 600;
 
-  &:first-child {
-    width: 60%;
-    border-right: 1px solid $grey;
+  * {
+    opacity: 0.5;
   }
 
-  &:last-child i {
-    position: relative;
-    top: -1px;
-    margin-right: 0.5em;
+  &:hover * {
+    opacity: 1;
+    background: -webkit-linear-gradient($pink, $orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   i {
+    margin-right: 0.5em;
     font-size: 18px;
   }
 }

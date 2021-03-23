@@ -38,4 +38,10 @@ export default {
     text-transform: uppercase;
   }
 }
+
+@media (max-width: 920px) {
+  button {
+    margin: 0 auto;
+  }
+}
 </style>

@@ -123,4 +123,10 @@ input[type="number"] {
     opacity: 1;
   }
 }
+
+@media (max-width: 920px) {
+  input[type="text"], input[type="number"] {
+    width: 100%!important;
+  }
+}
 </style>
