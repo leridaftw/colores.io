@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import gsap from 'gsap'
-
 import Header from '@/components/common/Header'
 import Card from '@/components/common/Card'
 
@@ -30,17 +28,6 @@ export default {
 
   created () {
     this.$store.dispatch('gradients/loadGradients')
-  },
-
-  mounted () {
-    setTimeout(() => {
-      gsap.to('li', {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.2
-      })
-    }, 1000)
   },
 
   computed: {
@@ -90,8 +77,6 @@ ul {
 
 li {
   margin: 0.5em;
-  opacity: 0;
-  transform: translateY(30px) scale(0);
 }
 
 .card {

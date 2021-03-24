@@ -27,6 +27,7 @@ export default {
 
   methods: {
     handleCopyCss (e) {
+      const paragraph = e.currentTarget.querySelector('p')
       const css = e.currentTarget.getAttribute('refCss')
       const textarea = document.createElement('textarea')
       textarea.value = css
@@ -34,9 +35,17 @@ export default {
       textarea.style.height = 0
       textarea.style.width = 0
       textarea.style.position = 'absolute'
+
       document.body.appendChild(textarea)
       textarea.select()
       document.execCommand('copy')
+      document.body.removeChild(textarea)
+
+      paragraph.textContent = 'Copied!'
+
+      setTimeout(() => {
+        paragraph.textContent = 'Copy CSS'
+      }, 500)
     }
   }
 }

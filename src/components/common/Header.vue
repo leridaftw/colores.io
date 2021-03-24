@@ -41,6 +41,9 @@ export default {
 @import '@/scss/master';
 
 header {
+  position: relative;
+  z-index: 99;
+  background: white;
   height: 50px;
   padding: 0 2em;
   border-bottom: 1px solid $grey;
