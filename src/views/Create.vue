@@ -160,10 +160,6 @@ li {
 }
 
 @media (max-width: 920px) {
-  header {
-    padding: 1em;
-  }
-
   .panel {
     padding-top: 4em;
     padding-bottom: 2em;

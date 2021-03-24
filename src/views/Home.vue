@@ -7,7 +7,7 @@
            <img src="@/assets/logo.svg">
         </div>
         <li v-for="gradient in gradients" :key="gradient.id">
-          <Card class="card" :data="gradient.gradient" :name="gradient.name"/>
+          <Card class="card" :data="gradient.gradient" :name="gradient.name" :id="gradient.id"/>
         </li>
       </ul>
     </main>
@@ -40,7 +40,7 @@ export default {
         scale: 1,
         stagger: 0.2
       })
-    }, 500)
+    }, 1000)
   },
 
   computed: {

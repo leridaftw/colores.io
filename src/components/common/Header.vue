@@ -138,4 +138,10 @@ header {
     }
   }
 }
+
+@media (max-width: 920px) {
+  header {
+    padding: 1em;
+  }
+}
 </style>

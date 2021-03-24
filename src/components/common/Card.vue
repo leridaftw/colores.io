@@ -4,7 +4,7 @@
     <div class="info flex column align-start">
       <h4>{{ name }}</h4>
       <div class="flex full-width">
-        <button class="flex" :refId="id">
+        <button class="flex" :id="id" :refCss="data" @click="handleCopyCss">
           <i class="fas fa-clipboard"/>
           <p>Copy CSS</p>
         </button>
@@ -19,13 +19,25 @@ import Gradient from '@/components/common/Gradient'
 export default {
   name: 'Card',
 
-  props: {
-    data: String,
-    name: String
-  },
+  props: ['data', 'name', 'id'],
 
   components: {
     Gradient
+  },
+
+  methods: {
+    handleCopyCss (e) {
+      const css = e.currentTarget.getAttribute('refCss')
+      const textarea = document.createElement('textarea')
+      textarea.value = css
+      textarea.style.opacity = 0
+      textarea.style.height = 0
+      textarea.style.width = 0
+      textarea.style.position = 'absolute'
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+    }
   }
 }
 </script>
